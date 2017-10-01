@@ -8,6 +8,7 @@ public class TileScript : MonoBehaviour {
 
 	private static TileScript tilescript;
 
+	// NOT CURRENTLY USED, PRE-EMPTIVELY SET IN CASE NEEDED LATER, ALLOWS US TO USE THE CLASS IN ANOTHER CLASS
 	public static TileScript Tilescript {
 		get {
 			if (tilescript == null) {
@@ -25,6 +26,7 @@ public class TileScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
+	//Destroy when the square becomes invisible.
 	void OnBecameInvisible () {
 		Destroy (this.gameObject);
 	}
