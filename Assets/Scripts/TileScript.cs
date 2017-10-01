@@ -4,11 +4,22 @@ using UnityEngine;
 
 
 public class TileScript : MonoBehaviour {
+	private float delay = 0f;
 
-	Tracker tracker;
+	private static TileScript tilescript;
+
+	public static TileScript Tilescript {
+		get {
+			if (tilescript == null) {
+				tilescript = GameObject.FindObjectOfType<TileScript> ();
+
+			}
+			return tilescript;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
-		tracker = new Tracker();
 	}
 	
 	// Update is called once per frame
@@ -16,9 +27,23 @@ public class TileScript : MonoBehaviour {
 	}
 	void OnBecameInvisible () {
 		Destroy (this.gameObject);
-		tracker.settracker(tracker.gettracker()-1);
-		Debug.Log (tracker.gettracker());
 	}
 
+	//After player exits square,trigger FallDown, which makes squares fall after a delay
+	void OnTriggerExit(Collider collider){
+		if (collider.tag == "Player") {
+			StartCoroutine (FallDown());
+		}
+
+	}
+
+	//Make square fall down after a delay
+	IEnumerator FallDown()
+	{
+		//wait the specified delay period before dropping squares!
+		yield return new WaitForSeconds (delay);
+		//By setting isKinematic to false, isGravity will pull the square downn!
+		GetComponent<Rigidbody> ().isKinematic = false;
+	}
 
 }

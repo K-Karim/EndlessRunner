@@ -9,10 +9,12 @@ public class TileManager : MonoBehaviour {
 	public GameObject currTile;
 	private int tTile = 1;
 	private int lTile = 2;
-	Tracker T;
+	private int MAXTILESRENDERED = 23;
+	private GameObject[] TileTracker;
+	public Tracker T;
 	// Use this for initialization
 	void Start () {
-		T = new Tracker();
+		GetNumberofTiles ();
 		rng();
 
 	}
@@ -20,18 +22,18 @@ public class TileManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (T.gettracker() <= 30) {
-			Debug.Log (T.gettracker());
+		if (GetNumberofTiles () <= MAXTILESRENDERED) {
 			rng ();
-			increment ();
 		}
 
 	}
-	void increment(){
-		T.settracker(T.gettracker() + 1);
-	}
-	void decrement(){
-		T.settracker(T.gettracker() -1);
+
+	// Gets the number of Tiles currently active 
+	private int GetNumberofTiles(){
+
+		TileTracker = GameObject.FindGameObjectsWithTag ("Tile");
+		int count = TileTracker.Length;
+		return count;
 	}
 
 	//Randomly generate either a top or left tile
