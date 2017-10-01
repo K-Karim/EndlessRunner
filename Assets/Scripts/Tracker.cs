@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tracker : MonoBehaviour {
-	public int tracker;
+	private int tracker;
 	// Use this for initialization
 	void Start(){
 		tracker = 0;
@@ -14,6 +14,9 @@ public class Tracker : MonoBehaviour {
 
 	public int gettracker(){
 		return tracker;
+	}
+	public void settracker(int tracker){
+		this.tracker = tracker;
 	}
 	public void increment(){
 		tracker++;

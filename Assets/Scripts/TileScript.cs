@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class TileScript : MonoBehaviour {
 
-	Tracker T;
+	Tracker tracker;
 	// Use this for initialization
 	void Start () {
-		T = new Tracker();
+		tracker = new Tracker();
 	}
 	
 	// Update is called once per frame
@@ -16,11 +16,9 @@ public class TileScript : MonoBehaviour {
 	}
 	void OnBecameInvisible () {
 		Destroy (this.gameObject);
-		decrement();
-		Debug.Log (T.tracker);
+		tracker.settracker(tracker.gettracker()-1);
+		Debug.Log (tracker.gettracker());
 	}
-	void decrement(){
-		T.tracker-=1;
-	}
+
 
 }

@@ -20,17 +20,19 @@ public class TileManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (T.tracker <= 30) {
-			Debug.Log (T.tracker);
+		if (T.gettracker() <= 30) {
+			Debug.Log (T.gettracker());
 			rng ();
 			increment ();
 		}
 
 	}
 	void increment(){
-		T.tracker += 1;
+		T.settracker(T.gettracker() + 1);
 	}
-
+	void decrement(){
+		T.settracker(T.gettracker() -1);
+	}
 
 	//Randomly generate either a top or left tile
 	private void rng(){
