@@ -34,11 +34,16 @@ public class PlayerScript : MonoBehaviour {
 		//doesn't move until user presses/ picks location
 		Score = 0;
 		direction = Vector3.zero;
-	}
-	
-	// Update is called once per frame
-	void Update () {
         HScoreTxt.text = hScore.ToString();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (Alive) {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
                 direction = Vector3.forward;
@@ -97,7 +102,9 @@ public class PlayerScript : MonoBehaviour {
             if(hScore == 0 || Score> hScore)
             {
                 hScore = Score;
+
             }
+            HScoreTxt.text = hScore.ToString();
 
             RaycastHit raycasthit;
             Ray ray = new Ray(transform.position, Vector3.down);
