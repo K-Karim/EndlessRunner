@@ -34,10 +34,10 @@ public class TileScript : MonoBehaviour {
 	//After player exits square,trigger FallDown, which makes squares fall after a delay
 	void OnTriggerExit(Collider collider){
 		if (collider.tag == "Player") {
-			StartCoroutine (FallDown());
-		}
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
 
-	}
+    }
 
 	//Make square fall down after a delay
 	IEnumerator FallDown()

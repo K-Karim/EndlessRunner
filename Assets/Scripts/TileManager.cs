@@ -7,12 +7,28 @@ public class TileManager : MonoBehaviour {
 	public GameObject leftTilePrefab;
 	public GameObject topTilePrefab;
 	public GameObject currTile;
+
 	private int tTile = 1;
 	private int lTile = 2;
 	private int MAXTILESRENDERED = 23;
-	private GameObject[] TileTracker;
-	public Tracker T;
-	// Use this for initialization
+
+
+    private int SLOWOBJ=1;
+    private int FASTOBJ=2;
+    private int PLUS5OBJ = 3;
+    private int PLUS10OBJ = 4;
+    private int PLUS50OBJ = 5;
+
+
+    private int FAST = 950;
+    private int SLOW = 965;
+    private int PLUS5 = 970;
+    private int PLUS10 = 985;
+    private int PLUS50 = 999;
+    //Used to track current number of tiles rendered
+    private GameObject[] TileTracker;
+	
+    // Use this for initialization
 	void Start () {
 		GetNumberofTiles ();
 		rng();
@@ -52,10 +68,44 @@ public class TileManager : MonoBehaviour {
 	{
 		//first get child gets the Tile, second gets the anchor point (so in this case topanchorpt), quaternion.identity locks rotation :)
 		currTile = (GameObject)Instantiate (topTilePrefab,currTile.transform.GetChild(0).transform.GetChild(1).position,Quaternion.identity);
-	}
+        PowerUP();
+    }
 	public void CreateLeftTile()
 	{
 		currTile = (GameObject)Instantiate (leftTilePrefab,currTile.transform.GetChild(0).transform.GetChild(0).position,Quaternion.identity);
-	}
+        PowerUP();
+    }
+
+    public void PowerUP()
+    {
+
+        int powerupRNG = Random.Range(0, 1000);
+
+        if (powerupRNG >= FAST && powerupRNG < SLOW)
+        {
+            currTile.transform.GetChild(FASTOBJ).gameObject.SetActive(true);
+        }
+
+        else if (powerupRNG >= SLOW && powerupRNG <PLUS5)
+        {
+            currTile.transform.GetChild(SLOWOBJ).gameObject.SetActive(true);
+        }
+
+        else if (powerupRNG >= PLUS5 && powerupRNG < PLUS10)
+        {
+            currTile.transform.GetChild(PLUS5OBJ).gameObject.SetActive(true);
+        }
+
+        else if (powerupRNG >= PLUS10 && powerupRNG < PLUS50)
+        {
+            currTile.transform.GetChild(PLUS10OBJ).gameObject.SetActive(true);
+        }
+
+        else if (powerupRNG >= PLUS50)
+        {
+            currTile.transform.GetChild(PLUS50OBJ).gameObject.SetActive(true);
+        }
+    }
+
 
 }
