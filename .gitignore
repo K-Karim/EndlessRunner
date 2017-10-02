@@ -2,12 +2,12 @@
 # Created by https://www.gitignore.io/api/unity
 
 ### Unity ###
-/Library/
-/Temp/
-/obj/
-/Build/
-/Builds/
-/Assets/AssetStoreTools*
+Library/
+Temp/
+obj/
+Build/
+Builds/
+Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
