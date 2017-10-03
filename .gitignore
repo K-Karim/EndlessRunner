@@ -1,9 +1,8 @@
 
-### Unity ###
-/Library
-/Library/
-Library/
+# Created by https://www.gitignore.io/api/unity
 
+### Unity ###
+Library/
 Temp/
 obj/
 Build/
@@ -39,6 +38,3 @@ sysinfo.txt
 *.unitypackage
 
 # End of https://www.gitignore.io/api/unity
-*.dll
-
-*.dwlt
