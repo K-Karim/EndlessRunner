@@ -63,6 +63,9 @@ public class PlayerScript : MonoBehaviour {
 
             }
 
+            float moved = speed * Time.deltaTime;
+            //Speed and distance moved :)                                                                                                                           
+            transform.Translate(direction * moved);
             //if user hits levelup threshold, add 1 to speed.
             if (lvlscore % increaseS == 0 && lvlscore != 0)
             {
@@ -88,13 +91,6 @@ public class PlayerScript : MonoBehaviour {
             }
         }
     }
-
-	void FixedUpdate(){
-
-		float moved = speed * Time.deltaTime;
-		//Speed and distance moved :)                                                                                                                           
-		transform.Translate(direction * moved);
-	}
     
     //Once you exit the tile, you get a point! 
     void OnTriggerExit(Collider tile)
