@@ -15,6 +15,8 @@ public class PlayerScript : MonoBehaviour {
     private static int hScore=0;
 	public Text ScoreTxt;
     public Text HScoreTxt;
+	public Text FinalScoreTxt;
+	public Text FinalHScoreTxt;
 
     private bool hasleveled = true;
     private int increaseS= 50;
@@ -29,6 +31,9 @@ public class PlayerScript : MonoBehaviour {
     public GameObject Plus50PS;
 
     public GameObject ResetPrompt;
+	public Text newHS;
+
+	public Animator gameOverAnimator;
     // Use this for initialization
     void Start () {
 		//doesn't move until user presses/ picks location
@@ -81,13 +86,27 @@ public class PlayerScript : MonoBehaviour {
         }
         else
         {
-            ResetPrompt.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) ||Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+			GameOver ();
+
         }
     }
+
+	void GameOver() {
+		gameOverAnimator.SetTrigger ("GameOver");
+		FinalScoreTxt.text = Score.ToString ();
+		FinalHScoreTxt.text = hScore.ToString ();
+
+		if (Input.GetKeyDown (KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return)) {
+			ResetGame ();
+		}
+
+
+	}
+
+	public void ResetGame() {
+		print ("Reset game");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
 
 	void FixedUpdate(){
 
@@ -106,6 +125,7 @@ public class PlayerScript : MonoBehaviour {
             if(hScore == 0 || Score> hScore)
             {
                 hScore = Score;
+				newHS.gameObject.SetActive (true);
 
             }
             HScoreTxt.text = hScore.ToString();
