@@ -30,6 +30,7 @@ public class TileManager : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
+		print ("Start TileMan");
 		GetNumberofTiles ();
 		rng();
 

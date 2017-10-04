@@ -10,7 +10,7 @@ public class PlayerScript : MonoBehaviour {
 
 	//Starting Speed will be set in unity!
 	public float speed;
-	private Vector3 direction;
+	public Vector3 direction;
 	private int Score=0;
     private static int hScore=0;
 	public Text ScoreTxt;
@@ -34,8 +34,10 @@ public class PlayerScript : MonoBehaviour {
 	public Text newHS;
 
 	public Animator gameOverAnimator;
+	public MenuManager menuManager;
     // Use this for initialization
     void Start () {
+		print ("Start playerScript");
 		//doesn't move until user presses/ picks location
 		Score = 0;
 		direction = Vector3.zero;
@@ -99,6 +101,9 @@ public class PlayerScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return)) {
 			ResetGame ();
 		}
+		if (Input.GetKeyDown (KeyCode.H)) {
+			GoHome ();
+		}
 
 
 	}
@@ -106,10 +111,22 @@ public class PlayerScript : MonoBehaviour {
 	public void ResetGame() {
 		print ("Reset game");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		MenuManager.isReset = true;
 	}
 
-	void FixedUpdate(){
+	public void GoHome() {
+		print ("GoHome");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		MenuManager.isReset = false;
+	}
 
+	public void startGame() {
+		print("Start");
+		direction = Vector3.forward;
+	}
+
+	public void FixedUpdate(){
+//		print ("FixedUpdate");
 		float moved = speed * Time.deltaTime;
 		//Speed and distance moved :)                                                                                                                           
 		transform.Translate(direction * moved);
