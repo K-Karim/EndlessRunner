@@ -13,6 +13,8 @@ public class MenuManager : MonoBehaviour
 	public static bool isReset = false;
 	public GameObject fireTraling; 
 	public GameObject instructionsPage;
+	public GameObject optionsPage;
+
 
 	// Use this for initialization
 	void Start ()
@@ -42,14 +44,14 @@ public class MenuManager : MonoBehaviour
 		}
 
 		// Menu button display 
-		if (Input.GetKeyDown(KeyCode.I) ) {
+		if (Input.GetKeyDown (KeyCode.I)) {
 			hideHomeMenu ();
 			instructionsPage.SetActive (true);
 		}
 
 		if (Input.GetKeyDown(KeyCode.O) ) {
 			hideHomeMenu ();
-			instructionsPage.SetActive (true);
+			optionsPage.SetActive (true);
 		}
 
 
@@ -60,6 +62,7 @@ public class MenuManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape) ) {
 			showHomeMenu ();
 			instructionsPage.SetActive (false);
+			optionsPage.SetActive (false);
 		}
 
 
