@@ -147,12 +147,12 @@ public class PlayerScript : MonoBehaviour {
             }
             HScoreTxt.text = hScore.ToString();
 
-            RaycastHit raycasthit;
-            Ray ray = new Ray(transform.position, Vector3.down);
-            if (!Physics.Raycast(ray, out raycasthit))
-            {
-                Alive = false;
-            }
+		}
+		RaycastHit raycasthit;
+		Ray ray = new Ray(transform.position, Vector3.down);
+		if (!Physics.Raycast(ray, out raycasthit))
+		{
+			Alive = false;
 		}
    
    	}

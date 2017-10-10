@@ -6,7 +6,7 @@ public class CameraScript : MonoBehaviour
 {
 
     public GameObject player;
-    public PlayerScript ps;
+    private PlayerScript ps;
     private Vector3 offset;
     private float ydist;
     // Use this for initialization
