@@ -28,23 +28,40 @@ public class MenuManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		// Start game
 		if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
 			PlayGame ();
 		}
-		if (Input.GetKeyDown(KeyCode.Plus) ) {
+
+		// Traling setting
+		if (Input.GetKeyDown(KeyCode.Z) ) {
 			fireTraling.SetActive (false);
 		}
-		if (Input.GetKeyDown(KeyCode.Minus) ) {
+		if (Input.GetKeyDown(KeyCode.X) ) {
 			fireTraling.SetActive (true);
 		}
+
+		// Menu button display 
 		if (Input.GetKeyDown(KeyCode.I) ) {
 			hideHomeMenu ();
 			instructionsPage.SetActive (true);
 		}
+
+		if (Input.GetKeyDown(KeyCode.O) ) {
+			hideHomeMenu ();
+			instructionsPage.SetActive (true);
+		}
+
+
+
+
+
+		// Escape to home menu
 		if (Input.GetKeyDown(KeyCode.Escape) ) {
 			showHomeMenu ();
 			instructionsPage.SetActive (false);
 		}
+
 
 	}
 
@@ -53,6 +70,7 @@ public class MenuManager : MonoBehaviour
 		playerScript.direction = Vector3.forward;
 		playerScript.FixedUpdate ();
 		hideHomeMenu ();
+		this.gameObject.SetActive (false);
 	}
 
 	public void hideHomeMenu() {
