@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
 	public GameObject fireTraling; 
 	public GameObject instructionsPage;
 	public GameObject optionsPage;
+	public GameObject[] demoObject;
+
 
 
 	// Use this for initialization
@@ -47,6 +49,7 @@ public class MenuManager : MonoBehaviour
 		if (Input.GetKeyDown (KeyCode.I)) {
 			hideHomeMenu ();
 			instructionsPage.SetActive (true);
+			SetDemos (true);
 		}
 
 		if (Input.GetKeyDown(KeyCode.O) ) {
@@ -61,7 +64,7 @@ public class MenuManager : MonoBehaviour
 		// Escape to home menu
 		if (Input.GetKeyDown(KeyCode.Escape) ) {
 			showHomeMenu ();
-			instructionsPage.SetActive (false);
+			closeInstruction ();
 			optionsPage.SetActive (false);
 		}
 
@@ -86,7 +89,13 @@ public class MenuManager : MonoBehaviour
 
 	public void closeInstruction() {
 		instructionsPage.SetActive (false);
-		showHomeMenu ();
+		SetDemos (false);
+	}
+
+	public void SetDemos(bool status) {
+		for (int i = 0; i < demoObject.Length; i++) {
+			demoObject [i].gameObject.SetActive (status);
+		}
 	}
 }
 
