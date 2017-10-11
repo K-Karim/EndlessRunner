@@ -29,23 +29,25 @@ public class InfiniteTerrain : MonoBehaviour
 	
 	void Update ()
 	{
-		checkIfCurr (leftSea);
-		checkIfCurr (topSea);
-		checkIfCurr (diagSea);
+		leftSea = checkIfCurr (leftSea);
+		topSea = checkIfCurr (topSea);
+		diagSea = checkIfCurr (diagSea);
 
 		if(!hasUpdated)
 			updatePos ();
 	}
 
-	void checkIfCurr(GameObject sea){
+	GameObject checkIfCurr(GameObject sea){
 
 		if (Mathf.Abs(Player.transform.position.x - sea.transform.position.x) < distance*.3
 			&& Mathf.Abs(Player.transform.position.z - sea.transform.position.z) < distance*.3) {
 			GameObject tempSea = currSea;
 			currSea = sea;
-			sea = tempSea;
 			hasUpdated = false;
+			return tempSea;
 		}
+
+		return sea;
 	}
 
 	void updatePos(){
