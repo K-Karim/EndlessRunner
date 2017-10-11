@@ -46,13 +46,13 @@ public class MenuManager : MonoBehaviour
 		}
 
 		// Menu button display 
-		if (Input.GetKeyDown (KeyCode.I)) {
+		if (homeMenu.gameObject.activeSelf && Input.GetKeyDown (KeyCode.I)) {
 			hideHomeMenu ();
 			instructionsPage.SetActive (true);
 			SetDemos (true);
 		}
 
-		if (Input.GetKeyDown(KeyCode.O) ) {
+		if (homeMenu.gameObject.activeSelf && Input.GetKeyDown(KeyCode.O) ) {
 			hideHomeMenu ();
 			optionsPage.SetActive (true);
 		}
