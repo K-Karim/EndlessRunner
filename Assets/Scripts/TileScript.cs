@@ -28,7 +28,9 @@ public class TileScript : MonoBehaviour {
 	}
 	//Destroy when the square becomes invisible.
 	void OnBecameInvisible () {
-		Destroy (this.gameObject);
+		if (!GetComponent<Rigidbody> ().isKinematic) {
+			Destroy (this.gameObject);
+		}
 	}
 
 	//After player exits square,trigger FallDown, which makes squares fall after a delay

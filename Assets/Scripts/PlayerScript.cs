@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour {
     private static int hScore=0;
 	public Text ScoreTxt;
     public Text HScoreTxt;
+	public Text PowerupTxt;
 	public Text FinalScoreTxt;
 	public Text FinalHScoreTxt;
 
@@ -163,12 +164,16 @@ public class PlayerScript : MonoBehaviour {
             speed--;
             Pickup.gameObject.SetActive(false);
             Instantiate(SlowPS, transform.position, Quaternion.identity);
+			PowerupTxt.text = "Slow!".ToString();
+			StartCoroutine(disappear ());
         }
         else if (Pickup.tag == "Fast")
         {
             speed++;
             Pickup.gameObject.SetActive(false);
             Instantiate(FastPS, transform.position, Quaternion.identity);
+			PowerupTxt.text = "Fast!".ToString();
+			StartCoroutine(disappear ());
 
 
         }
@@ -177,6 +182,8 @@ public class PlayerScript : MonoBehaviour {
             Score += 5;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus5PS, transform.position, Quaternion.identity);
+			PowerupTxt.text = "+5 Points!".ToString();
+			StartCoroutine(disappear ());
 
 
         }
@@ -185,6 +192,8 @@ public class PlayerScript : MonoBehaviour {
             Score += 10;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus10PS, transform.position, Quaternion.identity);
+			PowerupTxt.text = "+10 Points!".ToString();
+			StartCoroutine(disappear ());
 
 
         }
@@ -193,6 +202,8 @@ public class PlayerScript : MonoBehaviour {
             Score += 50;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus50PS, transform.position, Quaternion.identity);
+			PowerupTxt.text = "+50 Points!".ToString();
+			StartCoroutine(disappear ());
 
         }
     }
@@ -200,4 +211,10 @@ public class PlayerScript : MonoBehaviour {
     {
         return Alive;
     }
+	IEnumerator disappear(){
+		yield return new WaitForSeconds(1);
+		PowerupTxt.text = "".ToString ();
+	
+	}
+
 }
