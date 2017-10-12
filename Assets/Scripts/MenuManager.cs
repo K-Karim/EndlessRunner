@@ -15,6 +15,15 @@ public class MenuManager : MonoBehaviour
 	public GameObject instructionsPage;
 	public GameObject optionsPage;
 	public GameObject[] demoObject;
+	public GameObject[] particle;
+	public static int currentParticleIndex;
+
+
+	private KeyCode[] keyCodes = {
+		KeyCode.Alpha2,
+		KeyCode.Alpha3,
+		KeyCode.Alpha4,
+	};
 
 
 
@@ -26,6 +35,9 @@ public class MenuManager : MonoBehaviour
 		if (isReset) {
 			print ("is Reset");
 			hideHomeMenu ();
+		}
+		if (currentParticleIndex != particle.Length) {
+			particle [currentParticleIndex].gameObject.SetActive (true);
 		}
 	}
 	
@@ -56,6 +68,28 @@ public class MenuManager : MonoBehaviour
 			hideHomeMenu ();
 			optionsPage.SetActive (true);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			clearParticle ();
+			currentParticleIndex = particle.Length;
+
+		} else {
+		
+			for (int i = 0; i < keyCodes.Length; i++) {
+				if (Input.GetKeyDown (keyCodes [i])) {
+					clearParticle ();
+					particle [i].gameObject.SetActive (true);
+					currentParticleIndex = i;
+				}
+			}
+		
+		}
+
+
+
+
+
+
 
 
 
@@ -97,6 +131,12 @@ public class MenuManager : MonoBehaviour
 	public void SetDemos(bool status) {
 		for (int i = 0; i < demoObject.Length; i++) {
 			demoObject [i].gameObject.SetActive (status);
+		}
+	}
+
+	public void clearParticle() {
+		for (int i = 0; i < particle.Length; i++) {
+			particle [i].gameObject.SetActive (false);
 		}
 	}
 }
