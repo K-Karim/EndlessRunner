@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
 	void Update ()
 	{
 		// Start game
-		if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+		if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
 			PlayGame ();
 		}
 
@@ -76,6 +76,8 @@ public class MenuManager : MonoBehaviour
 		playerScript.direction = Vector3.forward;
 		playerScript.FixedUpdate ();
 		hideHomeMenu ();
+		closeInstruction ();
+		optionsPage.SetActive (false);
 		this.gameObject.SetActive (false);
 	}
 
