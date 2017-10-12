@@ -69,21 +69,24 @@ public class MenuManager : MonoBehaviour
 			optionsPage.SetActive (true);
 		}
 
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			clearParticle ();
-			currentParticleIndex = particle.Length;
+		if (optionsPage.gameObject.activeSelf) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				clearParticle ();
+				currentParticleIndex = particle.Length;
 
-		} else {
-		
-			for (int i = 0; i < keyCodes.Length; i++) {
-				if (Input.GetKeyDown (keyCodes [i])) {
-					clearParticle ();
-					particle [i].gameObject.SetActive (true);
-					currentParticleIndex = i;
+			} else {
+
+				for (int i = 0; i < keyCodes.Length; i++) {
+					if (Input.GetKeyDown (keyCodes [i])) {
+						clearParticle ();
+						particle [i].gameObject.SetActive (true);
+						currentParticleIndex = i;
+					}
 				}
+
 			}
-		
 		}
+
 
 
 
