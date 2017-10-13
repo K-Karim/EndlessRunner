@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour {
 	public MenuManager menuManager;
     // Use this for initialization
     void Start () {
-		print ("Start playerScript");
+		//print ("Start playerScript");
 		//doesn't move until user presses/ picks location
 		Score = 0;
 		direction = Vector3.zero;
@@ -109,24 +109,23 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	public void ResetGame() {
-		print ("Reset game");
+		//print ("Reset game");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		MenuManager.isReset = true;
 	}
 
 	public void GoHome() {
-		print ("GoHome");
+		//print ("GoHome");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		MenuManager.isReset = false;
 	}
 
 	public void startGame() {
-		print("Start");
+		//print("Start");
 		direction = Vector3.forward;
 	}
 
 	public void FixedUpdate(){
-//		print ("FixedUpdate");
 		float moved = speed * Time.deltaTime;
 		//Speed and distance moved :)                                                                                                                           
 		transform.Translate(direction * moved);

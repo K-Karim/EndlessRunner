@@ -31,10 +31,10 @@ public class MenuManager : MonoBehaviour
 	void Start ()
 	{
 		
-		print ("Start menu manager");
+		//print ("Start menu manager");
 		playButton.onClick.AddListener(PlayGame);
 		if (isReset) {
-			print ("is Reset");
+			//print ("is Reset");
 			hideHomeMenu ();
 
 		} else {
@@ -109,7 +109,7 @@ public class MenuManager : MonoBehaviour
 	}
 
 	public void PlayGame() {
-		print ("Play game");
+		//print ("Play game");
 		playerScript.direction = Vector3.forward;
 		playerScript.FixedUpdate ();
 		hideHomeMenu ();

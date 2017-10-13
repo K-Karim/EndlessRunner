@@ -8,29 +8,31 @@ public class TileManager : MonoBehaviour {
 	public GameObject topTilePrefab;
 	public GameObject currTile;
 
+	//Indices for Where tile spawn tTile = Top, lTile = Left
 	private int tTile = 1;
 	private int lTile = 2;
+
 	private int MAXTILESRENDERED = 23;
 
-
+	//Indices for the Powerups
     private int SLOWOBJ=1;
     private int FASTOBJ=2;
     private int PLUS5OBJ = 3;
     private int PLUS10OBJ = 4;
     private int PLUS50OBJ = 5;
 
-
-    private int FAST = 950;
-    private int SLOW = 965;
-    private int PLUS5 = 970;
-    private int PLUS10 = 985;
+	//Odds of receiving the powerup, 3/200 FAST, 1/200 SLOW, 3/200 +5, 9/1000 +10, 1/1000 +50
+    private int FAST = 955;
+    private int SLOW = 970;
+    private int PLUS5 = 975;
+    private int PLUS10 = 990;
     private int PLUS50 = 999;
     //Used to track current number of tiles rendered
     private GameObject[] TileTracker;
 	
     // Use this for initialization
 	void Start () {
-		print ("Start TileMan");
+		//print ("Start TileMan");
 		GetNumberofTiles ();
 		rng();
 

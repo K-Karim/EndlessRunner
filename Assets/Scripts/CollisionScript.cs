@@ -39,10 +39,10 @@ public class CollisionScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		print (1);
+		//print (1);
 		if (col.GetComponent<Rigidbody>())
 		{
-			print (2);
+			//print (2);
 			waveNumber++;
 			if (waveNumber == 9){
 				waveNumber = 1;
