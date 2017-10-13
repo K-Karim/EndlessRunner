@@ -43,6 +43,9 @@ public class MenuManager : MonoBehaviour
 		if (currentParticleIndex != particle.Length) {
 			particle [currentParticleIndex].gameObject.SetActive (true);
 		}
+		if (currentParticleIndex != particle.Length) {
+			particle [currentParticleIndex].gameObject.SetActive (true);
+		}
 	}
 	
 	// Update is called once per frame
