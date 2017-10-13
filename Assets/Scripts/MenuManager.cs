@@ -15,17 +15,33 @@ public class MenuManager : MonoBehaviour
 	public GameObject instructionsPage;
 	public GameObject optionsPage;
 	public GameObject[] demoObject;
+	public GameObject[] particle;
+	public static int currentParticleIndex;
+
+
+	private KeyCode[] keyCodes = {
+		KeyCode.Alpha2,
+		KeyCode.Alpha3,
+		KeyCode.Alpha4,
+	};
 
 
 
 	// Use this for initialization
 	void Start ()
 	{
+		
 		print ("Start menu manager");
 		playButton.onClick.AddListener(PlayGame);
 		if (isReset) {
 			print ("is Reset");
 			hideHomeMenu ();
+
+		} else {
+			currentParticleIndex = particle.Length;
+		}
+		if (currentParticleIndex != particle.Length) {
+			particle [currentParticleIndex].gameObject.SetActive (true);
 		}
 	}
 	
@@ -33,17 +49,10 @@ public class MenuManager : MonoBehaviour
 	void Update ()
 	{
 		// Start game
-		if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
+		if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) {
 			PlayGame ();
 		}
-
-		// Traling setting
-		if (Input.GetKeyDown(KeyCode.Z) ) {
-			fireTraling.SetActive (false);
-		}
-		if (Input.GetKeyDown(KeyCode.X) ) {
-			fireTraling.SetActive (true);
-		}
+			
 
 		// Menu button display 
 		if (homeMenu.gameObject.activeSelf && Input.GetKeyDown (KeyCode.I)) {
@@ -57,12 +66,37 @@ public class MenuManager : MonoBehaviour
 			optionsPage.SetActive (true);
 		}
 
+		if (optionsPage.gameObject.activeSelf) {
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				clearParticle ();
+				currentParticleIndex = particle.Length;
+
+			} else {
+
+				for (int i = 0; i < keyCodes.Length; i++) {
+					if (Input.GetKeyDown (keyCodes [i])) {
+						clearParticle ();
+						particle [i].gameObject.SetActive (true);
+						currentParticleIndex = i;
+					}
+				}
+
+			}
+		}
+
+
+
+
+
+
+
+
 
 
 
 
 		// Escape to home menu
-		if (Input.GetKeyDown(KeyCode.Escape) ) {
+		if (Input.GetKeyDown(KeyCode.X) ) {
 			showHomeMenu ();
 			closeInstruction ();
 			optionsPage.SetActive (false);
@@ -76,6 +110,8 @@ public class MenuManager : MonoBehaviour
 		playerScript.direction = Vector3.forward;
 		playerScript.FixedUpdate ();
 		hideHomeMenu ();
+		closeInstruction ();
+		optionsPage.SetActive (false);
 		this.gameObject.SetActive (false);
 	}
 
@@ -95,6 +131,12 @@ public class MenuManager : MonoBehaviour
 	public void SetDemos(bool status) {
 		for (int i = 0; i < demoObject.Length; i++) {
 			demoObject [i].gameObject.SetActive (status);
+		}
+	}
+
+	public void clearParticle() {
+		for (int i = 0; i < particle.Length; i++) {
+			particle [i].gameObject.SetActive (false);
 		}
 	}
 }

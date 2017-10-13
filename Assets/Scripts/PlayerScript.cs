@@ -43,7 +43,6 @@ public class PlayerScript : MonoBehaviour {
 		Score = 0;
 		direction = Vector3.zero;
         HScoreTxt.text = hScore.ToString();
-
     }
 
     // Update is called once per frame
