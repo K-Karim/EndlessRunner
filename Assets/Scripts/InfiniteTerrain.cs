@@ -1,3 +1,10 @@
+/*
+ * Graphics and Interaction (COMP30019) Project 2
+ * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
+ * 
+ * 
+ */
+
 using UnityEngine;
 using System.Collections;
 

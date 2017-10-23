@@ -1,3 +1,7 @@
+// Graphics and Interaction (COMP30019) Project 2
+// Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
+//
+//
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 

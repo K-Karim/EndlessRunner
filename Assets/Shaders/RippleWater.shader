@@ -1,4 +1,8 @@
-﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+﻿// Graphics and Interaction (COMP30019) Project 2
+// Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
+//
+//
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
 Shader "Custom/RippleWater" {
 	Properties {
