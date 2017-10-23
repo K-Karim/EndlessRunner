@@ -9,7 +9,6 @@ public class InfiniteTerrain : MonoBehaviour
 	private GameObject leftSea;
 	private GameObject topSea;
 	private GameObject diagSea;
-	private double diagDistance;
 	private double distance;
 	private float spacing;
 	private bool hasUpdated = true;
@@ -23,7 +22,6 @@ public class InfiniteTerrain : MonoBehaviour
 		diagSea = seas [3];
 		yPos = currSea.transform.position.y;
 		distance = Mathf.Abs(Player.transform.position.x - leftSea.transform.position.x);
-		diagDistance = Vector3.Distance (Player.transform.position, diagSea.transform.position);
 		spacing = Vector3.Distance (currSea.transform.position, topSea.transform.position);
 	}
 	
