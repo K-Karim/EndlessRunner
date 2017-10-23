@@ -16,8 +16,10 @@ public class PlayerScript : MonoBehaviour {
 	//Starting Speed will be set in unity!
 	public float speed;
 	public Vector3 direction;
+
 	private int Score=0;
     private static int hScore=0;
+
 	public Text ScoreTxt;
     public Text HScoreTxt;
 	public Text PowerupTxt;
@@ -30,6 +32,7 @@ public class PlayerScript : MonoBehaviour {
 
     private bool Alive = true;
 
+	/* Power-ups*/
     public GameObject SlowPS;
     public GameObject FastPS;
     public GameObject Plus5PS;
@@ -38,24 +41,26 @@ public class PlayerScript : MonoBehaviour {
 
     public GameObject ResetPrompt;
 	public Text newHS;
-
 	public Animator gameOverAnimator;
 	public MenuManager menuManager;
-    // Use this for initialization
+    
+	/* Reset score and retain highscore */
     void Start () {
-		//print ("Start playerScript");
-		//doesn't move until user presses/ picks location
 		Score = 0;
-		direction = Vector3.zero;
-        HScoreTxt.text = hScore.ToString();
-    }
+		HScoreTxt.text = hScore.ToString();
 
-    // Update is called once per frame
+		direction = Vector3.zero;	//doesn't move until user presses/ picks location
+	}
+
+    /* Update player position with corresponding action */
     void Update () {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Quit application
+		if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
+
+		// Move player if still alive
         if (Alive) {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
                 direction = Vector3.forward;
@@ -72,71 +77,68 @@ public class PlayerScript : MonoBehaviour {
             //space = JUMP, however causes complications atm.
             else if (Input.GetKeyDown(KeyCode.Space)) {
                 //direction = Vector3.up;
+			}
 
-            }
-
-            //if user hits levelup threshold, add 1 to speed.
-            if (lvlscore % increaseS == 0 && lvlscore != 0)
-            {
+            // If user hits levelup threshold, add 1 to speed.
+            if (lvlscore % increaseS == 0 && lvlscore != 0) {
                 //ensures that +1 to speed is only added once per level increase!
-                if (hasleveled)
-                {
+                if (hasleveled) {
                     speed++;
                     lvlscore = 0;
                     hasleveled = !hasleveled;
                 }
-            }
-            else
-            {
+            } else {
                 hasleveled = true;
             }
-        }
-        else
-        {
-			GameOver ();
 
-        }
+		// End game when player not alive
+        } else {
+			GameOver ();
+		}
     }
 
+	/* Game over action */
 	void GameOver() {
+		// Set animation 
 		gameOverAnimator.SetTrigger ("GameOver");
+
+		// Set scores
 		FinalScoreTxt.text = Score.ToString ();
 		FinalHScoreTxt.text = hScore.ToString ();
 
+		// Receive follow up action
 		if (Input.GetKeyDown (KeyCode.KeypadEnter) || Input.GetKeyDown (KeyCode.Return)) {
-			ResetGame ();
+			RetryGame ();
 		}
 		if (Input.GetKeyDown (KeyCode.H)) {
 			GoHome ();
 		}
-
-
 	}
 
-	public void ResetGame() {
-		//print ("Reset game");
+	/* Retry game */
+	public void RetryGame() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		MenuManager.isReset = true;
+		MenuManager.isRetry = true;
 	}
 
+	/* Stop game and return to home main menu */
 	public void GoHome() {
-		//print ("GoHome");
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		MenuManager.isReset = false;
+		MenuManager.isRetry = false;
 	}
 
+	/* Start the game, move the player */
 	public void startGame() {
-		//print("Start");
 		direction = Vector3.forward;
 	}
 
 	public void FixedUpdate(){
-		float moved = speed * Time.deltaTime;
 		//Speed and distance moved :)                                                                                                                           
+		float moved = speed * Time.deltaTime;
 		transform.Translate(direction * moved);
 	}
     
-    //Once you exit the tile, you get a point! 
+    /* Once you exit the tile, you get a point! */
     void OnTriggerExit(Collider tile)
 	{
 		if(tile.tag == "Tile"){
@@ -158,8 +160,9 @@ public class PlayerScript : MonoBehaviour {
 		{
 			Alive = false;
 		}
-   
-   	}
+	}
+
+	/* */
     private void OnTriggerEnter(Collider Pickup)
     {
         if (Pickup.tag == "Slow")
@@ -210,14 +213,17 @@ public class PlayerScript : MonoBehaviour {
 
         }
     }
+
+	/* Getter for player alive status */
     public bool getAlive()
     {
         return Alive;
     }
+
+	/* */
 	IEnumerator disappear(){
 		yield return new WaitForSeconds(1);
 		PowerupTxt.text = "".ToString ();
-	
 	}
 
 }
