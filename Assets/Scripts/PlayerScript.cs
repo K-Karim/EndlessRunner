@@ -46,6 +46,7 @@ public class PlayerScript : MonoBehaviour {
 	public Text newHS;
 	public Animator gameOverAnimator;
 	public MenuManager menuManager;
+	public AudioSource pickup;
     
 	/* Reset score and retain highscore */
     void Start () {
@@ -176,6 +177,7 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(SlowPS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "Slow!".ToString();
 			StartCoroutine(disappear ());
+			pickup.Play ();
         }
 
 		// Increase speed 
@@ -186,6 +188,7 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(FastPS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "Fast!".ToString();
 			StartCoroutine(disappear ());
+			pickup.Play ();
 		}
 
 		// Bonus score: 
@@ -196,6 +199,7 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus5PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+5 Points!".ToString();
 			StartCoroutine(disappear ());
+			pickup.Play ();
 		}
 
         else if (Pickup.tag == "+10")
@@ -205,6 +209,8 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus10PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+10 Points!".ToString();
 			StartCoroutine(disappear ());
+			pickup.Play ();
+
 		}
 
         else if (Pickup.tag == "+50")
@@ -214,6 +220,7 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus50PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+50 Points!".ToString();
 			StartCoroutine(disappear ());
+			pickup.Play ();
 		}
     }
 

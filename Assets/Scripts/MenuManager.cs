@@ -29,6 +29,7 @@ public class MenuManager : MonoBehaviour
 
 	public static bool isRetry = false;		// Indicator for Retry game
 	public static int currentParticleIndex;	// Current chosen particle effect
+	private static bool isDefaultParticle = true;
 
 	/* Key to choose player's appearance options */
 	private KeyCode[] OptionsKeyCodes = {
@@ -46,7 +47,9 @@ public class MenuManager : MonoBehaviour
 	{
 		if (isRetry) {
 			hideHomeMenu ();
-			particle [currentParticleIndex].gameObject.SetActive (true);
+			if (!isDefaultParticle) {
+				particle [currentParticleIndex].gameObject.SetActive (true);
+			}
 
 		} else {
 			// default particle option is no effect
@@ -79,7 +82,7 @@ public class MenuManager : MonoBehaviour
 		if (optionsPage.gameObject.activeSelf) {
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
 				clearParticle ();
-				currentParticleIndex = particle.Length;
+				isDefaultParticle = true;
 
 			} else {
 				for (int i = 0; i < OptionsKeyCodes.Length; i++) {
@@ -87,6 +90,7 @@ public class MenuManager : MonoBehaviour
 						clearParticle ();
 						particle [i].gameObject.SetActive (true);
 						currentParticleIndex = i;
+						isDefaultParticle = false;
 					}
 				}
 			}
