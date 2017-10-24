@@ -1,8 +1,9 @@
 ﻿/*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
- * 
+ * Controler action of player and interaction with game objects
  */
 
 using System.Collections;
@@ -13,13 +14,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
 
-	//Starting Speed will be set in unity!
-	public float speed;
+	public float speed;		//Starting Speed will be set in unity!
 	public Vector3 direction;
 
-	private int Score=0;
-    private static int hScore=0;
+	/* Game score */
+	private int Score=0;			// Current score
+    private static int hScore=0;	// Highscore
 
+	/* Score text */
 	public Text ScoreTxt;
     public Text HScoreTxt;
 	public Text PowerupTxt;
@@ -30,6 +32,7 @@ public class PlayerScript : MonoBehaviour {
     private int increaseS= 50;
     private int lvlscore = 0;
 
+	/* Indicator of player's alive */
     private bool Alive = true;
 
 	/* Power-ups*/
@@ -162,9 +165,10 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
-	/* */
+	/* Effects for powerup pick up */
     private void OnTriggerEnter(Collider Pickup)
     {
+		// Slow speed
         if (Pickup.tag == "Slow")
         {
             speed--;
@@ -173,6 +177,8 @@ public class PlayerScript : MonoBehaviour {
 			PowerupTxt.text = "Slow!".ToString();
 			StartCoroutine(disappear ());
         }
+
+		// Increase speed 
         else if (Pickup.tag == "Fast")
         {
             speed++;
@@ -180,9 +186,9 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(FastPS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "Fast!".ToString();
 			StartCoroutine(disappear ());
+		}
 
-
-        }
+		// Bonus score: 
         else if (Pickup.tag == "+5")
         {
             Score += 5;
@@ -190,9 +196,8 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus5PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+5 Points!".ToString();
 			StartCoroutine(disappear ());
+		}
 
-
-        }
         else if (Pickup.tag == "+10")
         {
             Score += 10;
@@ -200,9 +205,8 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus10PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+10 Points!".ToString();
 			StartCoroutine(disappear ());
+		}
 
-
-        }
         else if (Pickup.tag == "+50")
         {
             Score += 50;
@@ -210,8 +214,7 @@ public class PlayerScript : MonoBehaviour {
             Instantiate(Plus50PS, transform.position, Quaternion.identity);
 			PowerupTxt.text = "+50 Points!".ToString();
 			StartCoroutine(disappear ());
-
-        }
+		}
     }
 
 	/* Getter for player alive status */
@@ -220,7 +223,7 @@ public class PlayerScript : MonoBehaviour {
         return Alive;
     }
 
-	/* */
+	/* Powerup text disappear after time */
 	IEnumerator disappear(){
 		yield return new WaitForSeconds(1);
 		PowerupTxt.text = "".ToString ();

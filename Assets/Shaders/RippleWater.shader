@@ -1,4 +1,5 @@
-﻿// Graphics and Interaction (COMP30019) Project 2
+﻿// Graphics and Interaction (COMP30019) 
+// Project 2: Endless Runner
 // Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
 //
 //

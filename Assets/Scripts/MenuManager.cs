@@ -1,5 +1,6 @@
 ﻿/*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
  * Manage all game menu of including Playgame, Instruction and Options chosen menu
@@ -14,6 +15,7 @@ public class MenuManager : MonoBehaviour
 
 	public PlayerScript playerScript;
 
+	/* Home menu buttons */
 	public Button playButton;
 	public Button instructionButton;
 	public Button optionsButton;
@@ -21,11 +23,12 @@ public class MenuManager : MonoBehaviour
 	public GameObject homeMenu;
 	public GameObject instructionsPage;
 	public GameObject optionsPage;
-	public GameObject[] demoObject;
-	public GameObject[] particle;
 
-	public static bool isRetry = false;
-	public static int currentParticleIndex;
+	public GameObject[] demoObject;			// Demo objects for instruction page
+	public GameObject[] particle;			// Particle for option Page
+
+	public static bool isRetry = false;		// Indicator for Retry game
+	public static int currentParticleIndex;	// Current chosen particle effect
 
 	/* Key to choose player's appearance options */
 	private KeyCode[] OptionsKeyCodes = {
@@ -33,7 +36,6 @@ public class MenuManager : MonoBehaviour
 		KeyCode.Alpha3,
 		KeyCode.Alpha4,
 	};
-
 
 
 	/* Set up menu view: 

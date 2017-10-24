@@ -1,5 +1,6 @@
 ﻿/*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
  * 
@@ -32,7 +33,7 @@ public class CollisionScript : MonoBehaviour {
 
 	Mesh mesh;
 
-	//Initialisation
+	/* */
 	void Start () {
 		mesh = GetComponent<MeshFilter>().mesh;
 
@@ -41,7 +42,7 @@ public class CollisionScript : MonoBehaviour {
 		dist = new float[MAX_WAVES];
 	}
 
-	//Called every frame
+	/* */
 	void Update () {
 	
 		//Cycles through each wave
@@ -64,7 +65,7 @@ public class CollisionScript : MonoBehaviour {
 		}
 	}
 
-	//Trigger so that things move through the wave
+	/* Trigger so that things move through the wave */
 	void OnTriggerEnter(Collider col){
 		if (col.GetComponent<Rigidbody>()){
 			//Cycles through each wave per collision

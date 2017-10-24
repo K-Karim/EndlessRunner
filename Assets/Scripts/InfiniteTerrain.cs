@@ -1,5 +1,6 @@
 /*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
  * 
@@ -20,7 +21,8 @@ public class InfiniteTerrain : MonoBehaviour
 	private float spacing;
 	private bool hasUpdated = true;
 	private float yPos;
-	
+
+	/* */
 	void Start ()
 	{
 		currSea = seas [0];
@@ -31,7 +33,8 @@ public class InfiniteTerrain : MonoBehaviour
 		distance = Mathf.Abs(Player.transform.position.x - leftSea.transform.position.x);
 		spacing = Vector3.Distance (currSea.transform.position, topSea.transform.position);
 	}
-	
+
+	/* */
 	void Update ()
 	{
 		leftSea = checkIfCurr (leftSea);
@@ -42,6 +45,7 @@ public class InfiniteTerrain : MonoBehaviour
 			updatePos ();
 	}
 
+	/* */
 	GameObject checkIfCurr(GameObject sea){
 
 		if (Mathf.Abs(Player.transform.position.x - sea.transform.position.x) < distance*.3
@@ -55,6 +59,7 @@ public class InfiniteTerrain : MonoBehaviour
 		return sea;
 	}
 
+	/* */
 	void updatePos(){
 		if (Player.transform.position.x < currSea.transform.position.x
 			&& Player.transform.position.z > currSea.transform.position.z) {

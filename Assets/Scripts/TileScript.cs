@@ -1,5 +1,6 @@
 ﻿/*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
  * 
@@ -26,21 +27,20 @@ public class TileScript : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
 	void Start () {
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	}
-	//Destroy when the square becomes invisible.
+
+	/* Destroy when the square becomes invisible. */
 	void OnBecameInvisible () {
 		if (!GetComponent<Rigidbody> ().isKinematic) {
 			Destroy (this.gameObject);
 		}
 	}
 
-	//After player exits square,trigger FallDown, which makes squares fall after a delay
+	/* After player exits square,trigger FallDown, which makes squares fall after a delay */
 	void OnTriggerExit(Collider collider){
 		if (collider.tag == "Player") {
             GetComponent<Rigidbody>().isKinematic = false;
@@ -48,10 +48,10 @@ public class TileScript : MonoBehaviour {
 
     }
 
-	//Make square fall down after a delay
+	/* Make square fall down after a delay */
 	IEnumerator FallDown()
 	{
-		//wait the specified delay period before dropping squares!
+		// Wait the specified delay period before dropping squares!
 		yield return new WaitForSeconds (delay);
 		//By setting isKinematic to false, isGravity will pull the square downn!
 		GetComponent<Rigidbody> ().isKinematic = false;

@@ -1,8 +1,9 @@
 ﻿/*
- * Graphics and Interaction (COMP30019) Project 2
+ * Graphics and Interaction (COMP30019) 
+ * Project 2: Endless Runner
  * Team: Karim Khairat, Duy (Daniel) Vu, and Brody Taylor
  * 
- * 
+ * Manage tiles as player playground: Generate random tiles and populate powerups
  */
 
 using System.Collections;
@@ -34,35 +35,29 @@ public class TileManager : MonoBehaviour {
     private int PLUS5 = 975;
     private int PLUS10 = 990;
     private int PLUS50 = 999;
+
     //Used to track current number of tiles rendered
     private GameObject[] TileTracker;
 	
-    // Use this for initialization
 	void Start () {
-		//print ("Start TileMan");
 		GetNumberofTiles ();
 		rng();
-
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
 		if (GetNumberofTiles () <= MAXTILESRENDERED) {
 			rng ();
 		}
-
 	}
 
-	// Gets the number of Tiles currently active 
+	/* Gets the number of Tiles currently active */
 	private int GetNumberofTiles(){
-
 		TileTracker = GameObject.FindGameObjectsWithTag ("Tile");
 		int count = TileTracker.Length;
 		return count;
 	}
 
-	//Randomly generate either a top or left tile
+	/* Randomly generate either a top or left tile */
 	private void rng(){
 		//randomly generate either 1 or 2. if 1  then generate a top tile, if 2 genearte a leftTile
 		int i = Random.Range(tTile, lTile+1);
@@ -73,19 +68,25 @@ public class TileManager : MonoBehaviour {
 		}	
 	}
 
-
+	/* 
+	 * Create top tile:
+	 * First get child gets the Tile, 
+	 * Second gets the anchor point (so in this case topanchorpt), quaternion.identity locks rotation :)
+	 */
 	public void CreateTopTile()
 	{
-		//first get child gets the Tile, second gets the anchor point (so in this case topanchorpt), quaternion.identity locks rotation :)
 		currTile = (GameObject)Instantiate (topTilePrefab,currTile.transform.GetChild(0).transform.GetChild(1).position,Quaternion.identity);
         PowerUP();
     }
+
+	/* Create the left tile */
 	public void CreateLeftTile()
 	{
 		currTile = (GameObject)Instantiate (leftTilePrefab,currTile.transform.GetChild(0).transform.GetChild(0).position,Quaternion.identity);
         PowerUP();
     }
 
+	/* Add power up randomly */
     public void PowerUP()
     {
 
@@ -115,7 +116,5 @@ public class TileManager : MonoBehaviour {
         {
             currTile.transform.GetChild(PLUS50OBJ).gameObject.SetActive(true);
         }
-    }
-
-
+	}
 }
