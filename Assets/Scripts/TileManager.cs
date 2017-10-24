@@ -38,12 +38,13 @@ public class TileManager : MonoBehaviour {
 
     //Used to track current number of tiles rendered
     private GameObject[] TileTracker;
-	
+		
+	/*on start, get the number of tiles and randomly create tiles*/
 	void Start () {
 		GetNumberofTiles ();
 		rng();
 	}
-	
+	/*on each update, if the number of tiles is less than 23, create more*/
 	void Update () {
 		if (GetNumberofTiles () <= MAXTILESRENDERED) {
 			rng ();
@@ -86,32 +87,32 @@ public class TileManager : MonoBehaviour {
         PowerUP();
     }
 
-	/* Add power up randomly */
+    /* Add power up randomly */
     public void PowerUP()
     {
 
         int powerupRNG = Random.Range(0, 1000);
-
+	//Create +1 Speed (aka Fast!) powerup(may be disadvantageous)!
         if (powerupRNG >= FAST && powerupRNG < SLOW)
         {
             currTile.transform.GetChild(FASTOBJ).gameObject.SetActive(true);
         }
-
+	//Create -1 Speed powerup (aka Slow!)!
         else if (powerupRNG >= SLOW && powerupRNG <PLUS5)
         {
             currTile.transform.GetChild(SLOWOBJ).gameObject.SetActive(true);
         }
-
+	//Create +5 powerup!
         else if (powerupRNG >= PLUS5 && powerupRNG < PLUS10)
         {
             currTile.transform.GetChild(PLUS5OBJ).gameObject.SetActive(true);
         }
-
+	//Create +10 powerup!
         else if (powerupRNG >= PLUS10 && powerupRNG < PLUS50)
         {
             currTile.transform.GetChild(PLUS10OBJ).gameObject.SetActive(true);
         }
-
+	//Create +50 powerup!
         else if (powerupRNG >= PLUS50)
         {
             currTile.transform.GetChild(PLUS50OBJ).gameObject.SetActive(true);
