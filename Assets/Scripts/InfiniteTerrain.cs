@@ -17,35 +17,41 @@ public class InfiniteTerrain : MonoBehaviour
 	private GameObject leftSea;
 	private GameObject topSea;
 	private GameObject diagSea;
+	//Inital distance between player and adjacent sea gameobjects
 	private double distance;
+	//Spacing between adjacent sea gameobjects
 	private float spacing;
+	//Whether the sea gameObjects have updated to their new positions
 	private bool hasUpdated = true;
-	private float yPos;
+	//Y position of the sea gameObjects
+	private float Y_POS_SEA;
 
-	/* */
+	/*Initalization*/
 	void Start ()
 	{
 		currSea = seas [0];
 		leftSea = seas [1];
 		topSea = seas [2];
 		diagSea = seas [3];
-		yPos = currSea.transform.position.y;
+
+		Y_POS_SEA = currSea.transform.position.y;
 		distance = Mathf.Abs(Player.transform.position.x - leftSea.transform.position.x);
 		spacing = Vector3.Distance (currSea.transform.position, topSea.transform.position);
 	}
 
-	/* */
+	/*Checks whether any of the 4 water gameObjects need to be moved*/
 	void Update ()
 	{
 		leftSea = checkIfCurr (leftSea);
 		topSea = checkIfCurr (topSea);
 		diagSea = checkIfCurr (diagSea);
 
+		//Updates position of water gameObjects if need be
 		if(!hasUpdated)
 			updatePos ();
 	}
 
-	/* */
+	/*Checks if parameter sea is the sea the player is currently on top of*/
 	GameObject checkIfCurr(GameObject sea){
 
 		if (Mathf.Abs(Player.transform.position.x - sea.transform.position.x) < distance*.3
@@ -59,24 +65,29 @@ public class InfiniteTerrain : MonoBehaviour
 		return sea;
 	}
 
-	/* */
+	/*Corrects the positions of the sea gameObjects*/
 	void updatePos(){
+		//moves left, above and diagonal sea to correct positions
 		if (Player.transform.position.x < currSea.transform.position.x
 			&& Player.transform.position.z > currSea.transform.position.z) {
-			Vector3 newPos = new Vector3 (currSea.transform.position.x - spacing, yPos, currSea.transform.position.z); 
+			Vector3 newPos = new Vector3 (currSea.transform.position.x - spacing, Y_POS_SEA, currSea.transform.position.z); 
 			leftSea.transform.position = newPos;
 
-			newPos = new Vector3 (currSea.transform.position.x, yPos, currSea.transform.position.z + spacing); 
+			newPos = new Vector3 (currSea.transform.position.x, Y_POS_SEA, currSea.transform.position.z + spacing); 
 			topSea.transform.position = newPos;
 
-			newPos = new Vector3 (currSea.transform.position.x - spacing, yPos, currSea.transform.position.z + spacing); 
+			newPos = new Vector3 (currSea.transform.position.x - spacing, Y_POS_SEA, currSea.transform.position.z + spacing); 
 			diagSea.transform.position = newPos;
 			hasUpdated = true;
-		} else if (Player.transform.position.x < currSea.transform.position.x) {
-			Vector3 newPos = new Vector3 (currSea.transform.position.x - spacing, yPos, currSea.transform.position.z); 
+		}
+		//move the left sea to correct position
+		else if (Player.transform.position.x < currSea.transform.position.x) {
+			Vector3 newPos = new Vector3 (currSea.transform.position.x - spacing, Y_POS_SEA, currSea.transform.position.z); 
 			leftSea.transform.position = newPos;
-		} else if (Player.transform.position.z > currSea.transform.position.z) {
-			Vector3 newPos = new Vector3 (currSea.transform.position.x, yPos, currSea.transform.position.z + spacing); 
+		}
+		//move the above sea to correct position
+		else if (Player.transform.position.z > currSea.transform.position.z) {
+			Vector3 newPos = new Vector3 (currSea.transform.position.x, Y_POS_SEA, currSea.transform.position.z + spacing); 
 			topSea.transform.position = newPos;
 		}
 	}
