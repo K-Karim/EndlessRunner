@@ -16,9 +16,12 @@ public class CameraScript : MonoBehaviour
 
     public GameObject player;
     private PlayerScript ps;
+    //Transformation position offset
     private Vector3 offset;
+    //Distance away from the ball (taken from y value Set in unity)
     private float ydist;
 
+    /*On Startup, set y distance, offset and player game object*/
     void Start()
     {
         ps = player.GetComponent<PlayerScript>();
@@ -31,6 +34,7 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+    		//If player is alive, move camera with player, otherwise stop moving!
 		if (ps.getAlive())
         {
             transform.position = new Vector3(player.transform.position.x, ydist, player.transform.position.z) + offset;
