@@ -12,6 +12,7 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour {
 
+    /*Tile Gameobjects!*/
 	public GameObject leftTilePrefab;
 	public GameObject topTilePrefab;
 	public GameObject currTile;
@@ -87,7 +88,7 @@ public class TileManager : MonoBehaviour {
         PowerUP();
     }
 
-    /* Add power up randomly */
+    /* Add power up randomly if a valid number is randomed! */
     public void PowerUP()
     {
 

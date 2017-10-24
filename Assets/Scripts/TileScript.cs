@@ -26,12 +26,6 @@ public class TileScript : MonoBehaviour {
 		}
 	}
 
-	void Start () {
-	}
-	
-	void Update () {
-	}
-
 	/* Destroy when the square becomes invisible. */
 	void OnBecameInvisible () {
 		if (!GetComponent<Rigidbody> ().isKinematic) {

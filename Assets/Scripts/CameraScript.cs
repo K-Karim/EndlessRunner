@@ -21,7 +21,7 @@ public class CameraScript : MonoBehaviour
     //Distance away from the ball (taken from y value Set in unity)
     private float ydist;
 
-    /*On Startup, set y distance, offset and player game object*/
+    /*On game starting, set y distance, offset and player game object*/
     void Start()
     {
         ps = player.GetComponent<PlayerScript>();
@@ -32,6 +32,7 @@ public class CameraScript : MonoBehaviour
         ydist = player.transform.position.y;
     }
 
+    /*On game update,check if player is still alive, if so move camera with player, otherwise freeze at the last 'alive' location*/
     void Update()
     {
     		//If player is alive, move camera with player, otherwise stop moving!

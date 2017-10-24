@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour {
 	public Text FinalScoreTxt;
 	public Text FinalHScoreTxt;
 
+    /*level tracking*/
     private bool hasleveled = true;
     private int increaseS= 50;
     private int lvlscore = 0;
@@ -158,6 +159,7 @@ public class PlayerScript : MonoBehaviour {
             HScoreTxt.text = hScore.ToString();
 
 		}
+        //check if there's a tile below you, if not you lose :(
 		RaycastHit raycasthit;
 		Ray ray = new Ray(transform.position, Vector3.down);
 		if (!Physics.Raycast(ray, out raycasthit))
@@ -175,9 +177,12 @@ public class PlayerScript : MonoBehaviour {
             speed--;
             Pickup.gameObject.SetActive(false);
             Instantiate(SlowPS, transform.position, Quaternion.identity);
-			PowerupTxt.text = "Slow!".ToString();
-			StartCoroutine(disappear ());
-			pickup.Play ();
+            //display powerup text
+            PowerupTxt.text = "Slow!".ToString();
+            //make powerup disappear
+            StartCoroutine(disappear());
+            //play powerup sound
+            pickup.Play();
         }
 
 		// Increase speed 
@@ -186,40 +191,52 @@ public class PlayerScript : MonoBehaviour {
             speed++;
             Pickup.gameObject.SetActive(false);
             Instantiate(FastPS, transform.position, Quaternion.identity);
-			PowerupTxt.text = "Fast!".ToString();
-			StartCoroutine(disappear ());
-			pickup.Play ();
-		}
+            //display powerup text
+            PowerupTxt.text = "Fast!".ToString();
+            //make powerup disappear
+            StartCoroutine(disappear());
+            //play powerup sound
+            pickup.Play();
+        }
 
-		// Bonus score: 
+        // +5 points!
         else if (Pickup.tag == "+5")
         {
             Score += 5;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus5PS, transform.position, Quaternion.identity);
-			PowerupTxt.text = "+5 Points!".ToString();
-			StartCoroutine(disappear ());
-			pickup.Play ();
-		}
-
+            //display powerup text
+            PowerupTxt.text = "+5 Points!".ToString();
+            //make powerup disappear
+            StartCoroutine(disappear());
+            //play powerup sound
+            pickup.Play();
+        }
+        // +10 points!
         else if (Pickup.tag == "+10")
         {
             Score += 10;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus10PS, transform.position, Quaternion.identity);
-			PowerupTxt.text = "+10 Points!".ToString();
-			StartCoroutine(disappear ());
-			pickup.Play ();
+            //display powerup text
+            PowerupTxt.text = "+10 Points!".ToString();
+            //make powerup disappear
+            StartCoroutine(disappear());
+            //play powerup sound
+            pickup.Play();
 
-		}
-
+        }
+        // +50 points!
         else if (Pickup.tag == "+50")
         {
             Score += 50;
             Pickup.gameObject.SetActive(false);
             Instantiate(Plus50PS, transform.position, Quaternion.identity);
+            //display powerup text
 			PowerupTxt.text = "+50 Points!".ToString();
+            //make powerup disappear
 			StartCoroutine(disappear ());
+            //play powerup sound
 			pickup.Play ();
 		}
     }
